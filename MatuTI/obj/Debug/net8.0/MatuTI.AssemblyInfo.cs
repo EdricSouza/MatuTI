@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MatuTI")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+aa9318104a7c835fba0be2e469346c99b2ab526d")]
 [assembly: System.Reflection.AssemblyProductAttribute("MatuTI")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MatuTI")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
