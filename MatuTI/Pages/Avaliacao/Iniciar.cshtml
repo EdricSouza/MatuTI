@@ -1,0 +1,45 @@
+@page
+@model MatuTI.Pages.Avaliacao.IniciarModel
+@{
+    ViewData["Title"] = "Iniciar Avaliação";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <div class="card border-0 shadow-sm">
+            <div class="card-body p-4">
+                <div class="text-center mb-4">
+                    <i class="bi bi-clipboard-plus text-primary" style="font-size:3rem"></i>
+                    <h5 class="mt-2 fw-bold">Nova Avaliação de Maturidade</h5>
+                    <p class="text-muted">Selecione a empresa que será avaliada para iniciar o questionário.</p>
+                </div>
+
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
+
+                    <div class="mb-4">
+                        <label for="EmpresaId" class="form-label fw-semibold">Empresa</label>
+                        <select asp-for="EmpresaId" asp-items="Model.EmpresasList"
+                                class="form-select form-select-lg">
+                            <option value="">-- Selecione a empresa --</option>
+                        </select>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <i class="bi bi-info-circle me-2"></i>
+                        Após iniciar, você responderá um questionário com perguntas organizadas por 7 indicadores
+                        de maturidade. Para cada resposta <strong>SIM</strong>, registre uma evidência.
+                        Para cada <strong>NÃO</strong>, registre uma providência.
+                    </div>
+
+                    <div class="d-flex gap-2 justify-content-end">
+                        <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
+                        <button type="submit" class="btn btn-primary btn-lg">
+                            <i class="bi bi-play-circle me-2"></i>Iniciar Avaliação
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

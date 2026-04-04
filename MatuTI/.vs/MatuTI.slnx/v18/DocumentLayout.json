@@ -1,0 +1,165 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\pages\\avaliacao\\responder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:pages\\avaliacao\\responder.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\models\\avaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:models\\avaliacao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\models\\questao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:models\\questao.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\data\\seed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:data\\seed.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\services\\scorecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:services\\scorecalculator.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\pages\\avaliacao\\relatorio.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:pages\\avaliacao\\relatorio.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|c:\\users\\grimlock\\documents\\matuti\\matuti\\pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{6EF22CAF-6910-476F-0B2D-5619CE39430C}|MatuTI.csproj|solutionrelative:pages\\index.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Responder.cshtml",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Pages\\Avaliacao\\Responder.cshtml",
+              "RelativeDocumentMoniker": "Pages\\Avaliacao\\Responder.cshtml",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Pages\\Avaliacao\\Responder.cshtml",
+              "RelativeToolTip": "Pages\\Avaliacao\\Responder.cshtml",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAAAAQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-04-02T21:28:33.634Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Avaliacao.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Models\\Avaliacao.cs",
+              "RelativeDocumentMoniker": "Models\\Avaliacao.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Models\\Avaliacao.cs",
+              "RelativeToolTip": "Models\\Avaliacao.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:27:36.246Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Questao.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Models\\Questao.cs",
+              "RelativeDocumentMoniker": "Models\\Questao.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Models\\Questao.cs",
+              "RelativeToolTip": "Models\\Questao.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:27:35.466Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:11:08.917Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Seed.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Data\\Seed.cs",
+              "RelativeDocumentMoniker": "Data\\Seed.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Data\\Seed.cs",
+              "RelativeToolTip": "Data\\Seed.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAxwCQAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:10:00.177Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "AppDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Data\\AppDbContext.cs",
+              "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Data\\AppDbContext.cs",
+              "RelativeToolTip": "Data\\AppDbContext.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:10:46.703Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ScoreCalculator.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Services\\ScoreCalculator.cs",
+              "RelativeDocumentMoniker": "Services\\ScoreCalculator.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Services\\ScoreCalculator.cs",
+              "RelativeToolTip": "Services\\ScoreCalculator.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:10:39.147Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Relatorio.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Pages\\Avaliacao\\Relatorio.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Avaliacao\\Relatorio.cshtml.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Pages\\Avaliacao\\Relatorio.cshtml.cs",
+              "RelativeToolTip": "Pages\\Avaliacao\\Relatorio.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:09:23.116Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Index.cshtml.cs",
+              "DocumentMoniker": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Pages\\Index.cshtml.cs",
+              "RelativeDocumentMoniker": "Pages\\Index.cshtml.cs",
+              "ToolTip": "C:\\Users\\GRIMLOCK\\Documents\\MatuTI\\MatuTI\\Pages\\Index.cshtml.cs",
+              "RelativeToolTip": "Pages\\Index.cshtml.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-04-02T21:06:53.576Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
