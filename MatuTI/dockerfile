@@ -3,8 +3,8 @@ WORKDIR /src
 
 COPY . .
 
-RUN dotnet restore MatuTI/MatuTI/MatuTI.csproj
-RUN dotnet publish MatuTI/MatuTI/MatuTI.csproj -c Release -o /app/publish
+RUN dotnet restore MatuTI.csproj
+RUN dotnet publish MatuTI.csproj -c Release -o /app/publish
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
