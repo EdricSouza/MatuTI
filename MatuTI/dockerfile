@@ -1,18 +1,17 @@
-# ---------- BUILD ----------
+# Stage 1: Build
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
+# Copia apenas os arquivos necessários
+COPY MatuTI.csproj .
+RUN dotnet restore MatuTI.csproj
+
+# Copia todo o restante do projeto
 COPY . .
+RUN dotnet publish MatuTI.csproj -c Release -o /app/publish
 
-RUN dotnet restore
-RUN dotnet publish -c Release -o /app/publish
-
-# ---------- RUNTIME ----------
+# Stage 2: Runtime
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
-
 COPY --from=build /app/publish .
-
-EXPOSE 8080
-
 ENTRYPOINT ["dotnet", "MatuTI.dll"]
