@@ -2,19 +2,10 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
-# copia solution
-COPY *.sln ./
-
-# copia projeto
-COPY MatuTI/*.csproj ./MatuTI/
-
-# restore
-RUN dotnet restore
-
-# copia restante
 COPY . .
 
-WORKDIR /src/MatuTI
+WORKDIR /src/MatuTI/MatuTI
+RUN dotnet restore
 RUN dotnet publish -c Release -o /app/publish
 
 # ---------- RUNTIME ----------
