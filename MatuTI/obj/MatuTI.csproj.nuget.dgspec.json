@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI\\MatuTI.csproj": {}
+    "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI\\MatuTI.csproj": {
+    "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI\\MatuTI.csproj",
+        "projectUniqueName": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI.csproj",
         "projectName": "MatuTI",
-        "projectPath": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI\\MatuTI.csproj",
+        "projectPath": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI.csproj",
         "packagesPath": "C:\\Users\\edric.souza\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI\\obj\\",
+        "outputPath": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

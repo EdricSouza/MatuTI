@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "2B3J7SaYE4w=",
+  "dgSpecHash": "wrJXGGbCqDc=",
   "success": true,
-  "projectFilePath": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI\\MatuTI.csproj",
+  "projectFilePath": "C:\\Users\\edric.souza\\Pictures\\estudo\\MatuTI\\MatuTI\\MatuTI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\edric.souza\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
     "C:\\Users\\edric.souza\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\8.0.0\\microsoft.aspnetcore.cryptography.internal.8.0.0.nupkg.sha512",
