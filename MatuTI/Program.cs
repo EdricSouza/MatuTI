@@ -5,9 +5,15 @@ using MatuTI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//
+// ================= DATABASE =================
+//
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite("Data Source=matuti.db"));
 
+//
+// ================= IDENTITY =================
+//
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
@@ -25,6 +31,18 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Auth/AcessoNegado";
 });
 
+//
+// ================= AUTHORIZATION =================
+//
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin",
+        policy => policy.RequireRole("Admin"));
+});
+
+//
+// ================= RAZOR PAGES =================
+//
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Empresas", "Admin");
@@ -33,35 +51,49 @@ builder.Services.AddRazorPages(options =>
     options.Conventions.AuthorizePage("/Index");
 });
 
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
-});
-
-var port = Environment.GetEnvironmentVariable("PORT") ?? "10000";
+//
+// ================= PORTA (RENDER / DOCKER) =================
+//
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
 builder.WebHost.UseUrls($"http://*:{port}");
 
 var app = builder.Build();
 
+//
+// ================= PIPELINE =================
+//
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// ⚠️ IMPORTANTE PARA RENDER
+if (app.Environment.IsDevelopment())
+{
+    app.UseHttpsRedirection();
+}
+
 app.UseStaticFiles();
+
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapRazorPages();
 
-// Seed
+//
+// ================= MIGRATION + SEED =================
+//
 using (var scope = app.Services.CreateScope())
 {
-    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    var services = scope.ServiceProvider;
+
+    var db = services.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
-    await Seed.InicializarAsync(scope.ServiceProvider);
+
+    await Seed.InicializarAsync(services);
 }
 
 app.Run();
