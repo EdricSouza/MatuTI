@@ -8,8 +8,16 @@ var builder = WebApplication.CreateBuilder(args);
 //
 // ================= DATABASE =================
 //
+var databasePath = Environment.GetEnvironmentVariable("DB_PATH") ?? "matuti.db";
+var databaseDirectory = Path.GetDirectoryName(databasePath);
+
+if (!string.IsNullOrWhiteSpace(databaseDirectory))
+{
+    Directory.CreateDirectory(databaseDirectory);
+}
+
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite("Data Source=matuti.db"));
+    options.UseSqlite($"Data Source={databasePath}"));
 
 //
 // ================= IDENTITY =================
@@ -68,7 +76,6 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-// ⚠️ IMPORTANTE PARA RENDER
 if (app.Environment.IsDevelopment())
 {
     app.UseHttpsRedirection();
