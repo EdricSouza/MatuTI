@@ -4,7 +4,7 @@
     ViewData["Title"] = "Banco de Questões";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4 page-toolbar">
     <p class="text-muted mb-0">Questões organizadas por indicador</p>
     <a asp-page="Create" class="btn btn-primary">
         <i class="bi bi-plus-circle me-1"></i>Nova Questão
@@ -21,52 +21,54 @@
             </h6>
         </div>
         <div class="card-body p-0">
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Pergunta</th>
-                        <th style="width:80px">Peso</th>
-                        <th style="width:80px">Status</th>
-                        <th style="width:100px">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var q in grupo)
-                    {
-                        <tr class="@(!q.Ativo ? "table-secondary text-muted" : "")">
-                            <td>@q.Texto</td>
-                            <td>
-                                @for (int i = 0; i < q.Peso; i++)
-                                {
-                                    <i class="bi bi-star-fill text-warning" style="font-size:0.75rem"></i>
-                                }
-                            </td>
-                            <td>
-                                @if (q.Ativo)
-                                {
-                                    <span class="badge bg-success">Ativa</span>
-                                }
-                                else
-                                {
-                                    <span class="badge bg-secondary">Inativa</span>
-                                }
-                            </td>
-                            <td>
-                                <a asp-page="Edit" asp-route-id="@q.Id"
-                                   class="btn btn-sm btn-outline-secondary me-1">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <form method="post" asp-page-handler="Excluir" asp-route-id="@q.Id" class="d-inline">
-                                    <button type="submit" class="btn btn-sm @(q.Ativo ? "btn-outline-warning" : "btn-outline-success")"
-                                            title="@(q.Ativo ? "Desativar" : "Ativar")">
-                                        <i class="bi @(q.Ativo ? "bi-eye-slash" : "bi-eye")"></i>
-                                    </button>
-                                </form>
-                            </td>
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 table-mobile-stack">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Pergunta</th>
+                            <th style="width:80px">Peso</th>
+                            <th style="width:80px">Status</th>
+                            <th style="width:100px">Ações</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var q in grupo)
+                        {
+                            <tr class="@(!q.Ativo ? "table-secondary text-muted" : "")">
+                                <td data-label="Pergunta">@q.Texto</td>
+                                <td data-label="Peso">
+                                    @for (int i = 0; i < q.Peso; i++)
+                                    {
+                                        <i class="bi bi-star-fill text-warning" style="font-size:0.75rem"></i>
+                                    }
+                                </td>
+                                <td data-label="Status">
+                                    @if (q.Ativo)
+                                    {
+                                        <span class="badge bg-success">Ativa</span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge bg-secondary">Inativa</span>
+                                    }
+                                </td>
+                                <td data-label="Ações">
+                                    <a asp-page="Edit" asp-route-id="@q.Id"
+                                       class="btn btn-sm btn-outline-secondary me-1">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form method="post" asp-page-handler="Excluir" asp-route-id="@q.Id" class="d-inline">
+                                        <button type="submit" class="btn btn-sm @(q.Ativo ? "btn-outline-warning" : "btn-outline-success")"
+                                                title="@(q.Ativo ? "Desativar" : "Ativar")">
+                                            <i class="bi @(q.Ativo ? "bi-eye-slash" : "bi-eye")"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 }

@@ -6,91 +6,83 @@
     <title>MatuTI - @ViewData["Title"]</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet" />
-    <style>
-        .sidebar {
-            min-height: 100vh;
-            background: linear-gradient(180deg, #1a237e 0%, #283593 100%);
-            width: 250px;
-            position: fixed;
-            top: 0; left: 0;
-        }
-        .sidebar .nav-link {
-            color: rgba(255,255,255,0.75);
-            border-radius: 8px;
-            margin: 2px 8px;
-            transition: all 0.2s;
-        }
-        .sidebar .nav-link:hover, .sidebar .nav-link.active {
-            color: #fff;
-            background: rgba(255,255,255,0.15);
-        }
-        .sidebar .nav-link i { width: 22px; }
-        .main-content { margin-left: 250px; }
-        .topbar { background: #fff; border-bottom: 1px solid #e0e0e0; }
-        .badge-role { font-size: 0.7rem; }
-    </style>
+    <link href="~/css/site.css" rel="stylesheet" />
 </head>
-<body class="bg-light">
+<body>
 
     <!-- Sidebar -->
-    <div class="sidebar d-flex flex-column py-3">
-        <div class="text-center mb-4 px-3">
-            <i class="bi bi-shield-check text-white" style="font-size:2rem"></i>
-            <div class="text-white fw-bold mt-1">MatuTI</div>
-            <div class="text-white-50 small">Maturidade de TI</div>
-        </div>
-
-        <nav class="nav flex-column">
-            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "active" : "")"
-               asp-page="/Index">
-                <i class="bi bi-speedometer2 me-2"></i>Dashboard
-            </a>
-
-            <div class="text-white-50 small px-3 mt-3 mb-1 text-uppercase" style="font-size:0.7rem">Avaliações</div>
-            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Avaliacoes" ? "active" : "")"
-               asp-page="/Avaliacao/Index">
-                <i class="bi bi-clipboard-check me-2"></i>Avaliações
-            </a>
-            <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "NovaAvaliacao" ? "active" : "")"
-               asp-page="/Avaliacao/Iniciar">
-                <i class="bi bi-plus-circle me-2"></i>Nova Avaliação
-            </a>
-
-            @if (User.IsInRole("Admin"))
-            {
-                <div class="text-white-50 small px-3 mt-3 mb-1 text-uppercase" style="font-size:0.7rem">Administração</div>
-                <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Empresas" ? "active" : "")"
-                   asp-page="/Empresas/Index">
-                    <i class="bi bi-building me-2"></i>Empresas
-                </a>
-                <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Questoes" ? "active" : "")"
-                   asp-page="/Questoes/Index">
-                    <i class="bi bi-question-circle me-2"></i>Questões
-                </a>
-                <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Usuarios" ? "active" : "")"
-                   asp-page="/Admin/Usuarios">
-                    <i class="bi bi-people me-2"></i>Usuários
-                </a>
-            }
-        </nav>
-
-        <div class="mt-auto px-3">
-            <div class="text-white-50 small mb-2">
-                <i class="bi bi-person-circle me-1"></i>
-                @User.Identity?.Name
+    <div class="sidebar offcanvas-lg offcanvas-start d-flex flex-column py-3" tabindex="-1" id="appSidebar" aria-labelledby="appSidebarLabel">
+        <div class="offcanvas-header d-lg-none border-bottom border-light border-opacity-25">
+            <div>
+                <div id="appSidebarLabel" class="text-white fw-bold">MatuTI</div>
+                <div class="text-white-50 small">Maturidade de TI</div>
             </div>
-            <form method="post" asp-page="/Auth/Logout">
-                <button type="submit" class="btn btn-outline-light btn-sm w-100">
-                    <i class="bi bi-box-arrow-left me-1"></i>Sair
-                </button>
-            </form>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" data-bs-target="#appSidebar" aria-label="Fechar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column p-0">
+            <div class="text-center mb-4 px-3">
+                <i class="bi bi-shield-check text-white" style="font-size:2rem"></i>
+                <div class="text-white fw-bold mt-1">MatuTI</div>
+                <div class="text-white-50 small">Maturidade de TI</div>
+            </div>
+
+            <nav class="nav flex-column">
+                <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Dashboard" ? "active" : "")"
+                   asp-page="/Index">
+                    <i class="bi bi-speedometer2 me-2"></i>Dashboard
+                </a>
+
+                <div class="text-white-50 small px-3 mt-3 mb-1 text-uppercase" style="font-size:0.7rem">Avaliações</div>
+                <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Avaliacoes" ? "active" : "")"
+                   asp-page="/Avaliacao/Index">
+                    <i class="bi bi-clipboard-check me-2"></i>Avaliações
+                </a>
+                <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "NovaAvaliacao" ? "active" : "")"
+                   asp-page="/Avaliacao/Iniciar">
+                    <i class="bi bi-plus-circle me-2"></i>Nova Avaliação
+                </a>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <div class="text-white-50 small px-3 mt-3 mb-1 text-uppercase" style="font-size:0.7rem">Administração</div>
+                    <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Empresas" ? "active" : "")"
+                       asp-page="/Empresas/Index">
+                        <i class="bi bi-building me-2"></i>Empresas
+                    </a>
+                    <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Questoes" ? "active" : "")"
+                       asp-page="/Questoes/Index">
+                        <i class="bi bi-question-circle me-2"></i>Questões
+                    </a>
+                    <a class="nav-link @(ViewData["ActivePage"]?.ToString() == "Usuarios" ? "active" : "")"
+                       asp-page="/Admin/Usuarios">
+                        <i class="bi bi-people me-2"></i>Usuários
+                    </a>
+                }
+            </nav>
+
+            <div class="mt-auto px-3">
+                <div class="text-white-50 small mb-2">
+                    <i class="bi bi-person-circle me-1"></i>
+                    @User.Identity?.Name
+                </div>
+                <form method="post" asp-page="/Auth/Logout">
+                    <button type="submit" class="btn btn-outline-light btn-sm w-100">
+                        <i class="bi bi-box-arrow-left me-1"></i>Sair
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
     <!-- Main Content -->
     <div class="main-content">
         <div class="topbar px-4 py-3 d-flex align-items-center justify-content-between">
-            <h5 class="mb-0 fw-semibold text-dark">@ViewData["Title"]</h5>
+            <div class="d-flex align-items-center gap-2">
+                <button class="btn btn-outline-secondary d-lg-none" type="button" data-bs-toggle="offcanvas" data-bs-target="#appSidebar" aria-controls="appSidebar">
+                    <i class="bi bi-list"></i>
+                </button>
+                <h5 class="mb-0 fw-semibold text-dark">@ViewData["Title"]</h5>
+            </div>
             <div>
                 @if (User.IsInRole("Admin"))
                 {
@@ -103,7 +95,7 @@
             </div>
         </div>
 
-        <div class="p-4">
+        <div class="page-content">
             @RenderBody()
         </div>
     </div>

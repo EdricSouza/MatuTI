@@ -4,7 +4,7 @@
     ViewData["Title"] = "Usuários";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4 page-toolbar">
     <p class="text-muted mb-0">@Model.Usuarios.Count usuário(s) cadastrado(s)</p>
     <a asp-page="/Auth/Registro" class="btn btn-primary">
         <i class="bi bi-person-plus me-1"></i>Novo Usuário
@@ -21,53 +21,55 @@
 
 <div class="card border-0 shadow-sm">
     <div class="card-body p-0">
-        <table class="table table-hover mb-0">
-            <thead class="table-light">
-                <tr>
-                    <th>Nome</th>
-                    <th>E-mail</th>
-                    <th>Perfil</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var u in Model.Usuarios)
-                {
+        <div class="table-responsive">
+            <table class="table table-hover mb-0 table-mobile-stack">
+                <thead class="table-light">
                     <tr>
-                        <td class="fw-semibold">@u.NomeCompleto</td>
-                        <td class="text-muted">@u.Email</td>
-                        <td>
-                            <span class="badge @(u.Perfil == "Admin" ? "bg-primary" : "bg-secondary")">
-                                @u.Perfil
-                            </span>
-                        </td>
-                        <td>
-                            <div class="d-flex gap-1">
-                                <!-- Alterar perfil -->
-                                <form method="post" asp-page-handler="AlterarPerfil" class="d-inline">
-                                    <input type="hidden" name="userId" value="@u.Id" />
-                                    <select name="perfil" class="form-select form-select-sm d-inline-block w-auto"
-                                            onchange="this.form.submit()">
-                                        <option value="Avaliador" selected="@(u.Perfil == "Avaliador")">Avaliador</option>
-                                        <option value="Admin" selected="@(u.Perfil == "Admin")">Admin</option>
-                                    </select>
-                                </form>
-                                <!-- Excluir -->
-                                @if (u.Email != User.Identity!.Name)
-                                {
-                                    <form method="post" asp-page-handler="Excluir" class="d-inline"
-                                          onsubmit="return confirm('Excluir usuário @u.NomeCompleto?')">
-                                        <input type="hidden" name="userId" value="@u.Id" />
-                                        <button type="submit" class="btn btn-sm btn-outline-danger">
-                                            <i class="bi bi-trash"></i>
-                                        </button>
-                                    </form>
-                                }
-                            </div>
-                        </td>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Perfil</th>
+                        <th>Ações</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach (var u in Model.Usuarios)
+                    {
+                        <tr>
+                            <td class="fw-semibold" data-label="Nome">@u.NomeCompleto</td>
+                            <td class="text-muted" data-label="E-mail">@u.Email</td>
+                            <td data-label="Perfil">
+                                <span class="badge @(u.Perfil == "Admin" ? "bg-primary" : "bg-secondary")">
+                                    @u.Perfil
+                                </span>
+                            </td>
+                            <td data-label="Ações">
+                                <div class="d-flex gap-1">
+                                    <!-- Alterar perfil -->
+                                    <form method="post" asp-page-handler="AlterarPerfil" class="d-inline">
+                                        <input type="hidden" name="userId" value="@u.Id" />
+                                        <select name="perfil" class="form-select form-select-sm d-inline-block w-auto"
+                                                onchange="this.form.submit()">
+                                            <option value="Avaliador" selected="@(u.Perfil == "Avaliador")">Avaliador</option>
+                                            <option value="Admin" selected="@(u.Perfil == "Admin")">Admin</option>
+                                        </select>
+                                    </form>
+                                    <!-- Excluir -->
+                                    @if (u.Email != User.Identity!.Name)
+                                    {
+                                        <form method="post" asp-page-handler="Excluir" class="d-inline"
+                                              onsubmit="return confirm('Excluir usuário @u.NomeCompleto?')">
+                                            <input type="hidden" name="userId" value="@u.Id" />
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>

@@ -4,7 +4,7 @@
     ViewData["Title"] = "Empresas";
 }
 
-<div class="d-flex justify-content-between align-items-center mb-4">
+<div class="d-flex justify-content-between align-items-center mb-4 page-toolbar">
     <p class="text-muted mb-0">@Model.Empresas.Count empresa(s) cadastrada(s)</p>
     <a asp-page="Create" class="btn btn-primary">
         <i class="bi bi-plus-circle me-1"></i>Nova Empresa
@@ -30,45 +30,47 @@
         }
         else
         {
-            <table class="table table-hover mb-0">
-                <thead class="table-light">
-                    <tr>
-                        <th>Nome</th>
-                        <th>CNPJ</th>
-                        <th>Setor</th>
-                        <th>Responsável</th>
-                        <th>Avaliações</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var e in Model.Empresas)
-                    {
+            <div class="table-responsive">
+                <table class="table table-hover mb-0 table-mobile-stack">
+                    <thead class="table-light">
                         <tr>
-                            <td class="fw-semibold">@e.Nome</td>
-                            <td class="text-muted">@e.CNPJ</td>
-                            <td>@(e.Setor ?? "-")</td>
-                            <td>@(e.Responsavel ?? "-")</td>
-                            <td>
-                                <span class="badge bg-secondary">@e.Avaliacoes.Count</span>
-                            </td>
-                            <td>
-                                <a asp-page="Edit" asp-route-id="@e.Id"
-                                   class="btn btn-sm btn-outline-secondary me-1">
-                                    <i class="bi bi-pencil"></i>
-                                </a>
-                                <form method="post" asp-page-handler="Excluir" asp-route-id="@e.Id"
-                                      class="d-inline"
-                                      onsubmit="return confirm('Excluir empresa @e.Nome?')">
-                                    <button type="submit" class="btn btn-sm btn-outline-danger">
-                                        <i class="bi bi-trash"></i>
-                                    </button>
-                                </form>
-                            </td>
+                            <th>Nome</th>
+                            <th>CNPJ</th>
+                            <th>Setor</th>
+                            <th>Responsável</th>
+                            <th>Avaliações</th>
+                            <th>Ações</th>
                         </tr>
-                    }
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @foreach (var e in Model.Empresas)
+                        {
+                            <tr>
+                                <td class="fw-semibold" data-label="Nome">@e.Nome</td>
+                                <td class="text-muted" data-label="CNPJ">@e.CNPJ</td>
+                                <td data-label="Setor">@(e.Setor ?? "-")</td>
+                                <td data-label="Responsável">@(e.Responsavel ?? "-")</td>
+                                <td data-label="Avaliações">
+                                    <span class="badge bg-secondary">@e.Avaliacoes.Count</span>
+                                </td>
+                                <td data-label="Ações">
+                                    <a asp-page="Edit" asp-route-id="@e.Id"
+                                       class="btn btn-sm btn-outline-secondary me-1">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form method="post" asp-page-handler="Excluir" asp-route-id="@e.Id"
+                                          class="d-inline"
+                                          onsubmit="return confirm('Excluir empresa @e.Nome?')">
+                                        <button type="submit" class="btn btn-sm btn-outline-danger">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
         }
     </div>
 </div>
