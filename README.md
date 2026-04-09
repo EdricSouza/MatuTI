@@ -28,6 +28,35 @@ dotnet run
 
 Acesse: **https://localhost:5001** ou **http://localhost:5000**
 
+## Deploy no Render com Docker
+
+Este projeto já vem com `Dockerfile` para publicação como container no Render.
+
+### Passo a passo
+
+1. Suba este repositório para o GitHub.
+2. No Render, crie um **Web Service** e escolha a opção **Docker**.
+3. Aponte para o repositório e deixe o Render usar o `Dockerfile` da raiz.
+4. Crie um **Persistent Disk** e monte em `/var/data`.
+5. Configure a variável de ambiente `DB_PATH` como `/var/data/matuti.db`.
+6. Faça o deploy.
+
+### Observações importantes
+
+- O app já escuta a variável `PORT`, então funciona no Render sem ajustes extras de porta.
+- O banco usa SQLite. Sem disco persistente, os dados podem ser perdidos em novos deploys.
+- Na primeira inicialização, o app executa as migrations e o seed automaticamente.
+
+### Variáveis úteis
+
+| Variável | Valor sugerido |
+|----------|----------------|
+| `DB_PATH` | `/var/data/matuti.db` |
+
+### `Dockerfile`
+
+O container compila o projeto com o SDK .NET 8 e executa a aplicação com o runtime ASP.NET 8.
+
 ## Credenciais padrão
 
 | Campo  | Valor              |
