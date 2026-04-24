@@ -24,20 +24,57 @@ public class EditModel : PageModel
         var ativo = await _db.AtivosIT.FindAsync(id);
         if (ativo == null) return NotFound();
         Ativo = ativo;
-        EmpresasList = new SelectList(await _db.Empresas.OrderBy(e => e.Nome).ToListAsync(), "Id", "Nome");
+        await CarregarEmpresasAsync();
         return Page();
     }
 
     public async Task<IActionResult> OnPostAsync()
     {
+        if (!await _db.Empresas.AnyAsync(e => e.Id == Ativo.EmpresaId))
+            ModelState.AddModelError("Ativo.EmpresaId", "Selecione uma empresa válida.");
+
         if (!ModelState.IsValid)
         {
-            EmpresasList = new SelectList(await _db.Empresas.OrderBy(e => e.Nome).ToListAsync(), "Id", "Nome");
+            await CarregarEmpresasAsync();
             return Page();
         }
-        _db.AtivosIT.Update(Ativo);
-        await _db.SaveChangesAsync();
+
+        var ativoExistente = await _db.AtivosIT.FindAsync(Ativo.Id);
+        if (ativoExistente == null) return NotFound();
+
+        ativoExistente.EmpresaId = Ativo.EmpresaId;
+        ativoExistente.Nome = Ativo.Nome;
+        ativoExistente.Tipo = Ativo.Tipo;
+        ativoExistente.Fabricante = Ativo.Fabricante;
+        ativoExistente.Versao = Ativo.Versao;
+        ativoExistente.Localizacao = Ativo.Localizacao;
+        ativoExistente.Responsavel = Ativo.Responsavel;
+        ativoExistente.DataAquisicao = Ativo.DataAquisicao;
+        ativoExistente.FimSuporte = Ativo.FimSuporte;
+        ativoExistente.Critico = Ativo.Critico;
+        ativoExistente.Observacoes = Ativo.Observacoes;
+
+        try
+        {
+            await _db.SaveChangesAsync();
+        }
+        catch (DbUpdateException)
+        {
+            ModelState.AddModelError(string.Empty, "Não foi possível atualizar o ativo. Verifique os dados e tente novamente.");
+            await CarregarEmpresasAsync();
+            return Page();
+        }
+
         TempData["Sucesso"] = "Ativo atualizado!";
         return RedirectToPage("Index");
+    }
+
+    private async Task CarregarEmpresasAsync()
+    {
+        EmpresasList = new SelectList(
+            await _db.Empresas.OrderBy(e => e.Nome).ToListAsync(),
+            "Id",
+            "Nome",
+            Ativo.EmpresaId);
     }
 }

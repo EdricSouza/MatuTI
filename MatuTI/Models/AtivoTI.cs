@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace MatuTI.Models;
 
@@ -6,7 +7,11 @@ public class AtivoTI
 {
     public int Id { get; set; }
 
+    [Range(1, int.MaxValue, ErrorMessage = "Empresa é obrigatória")]
+    [Display(Name = "Empresa")]
     public int EmpresaId { get; set; }
+
+    [ValidateNever]
     public Empresa Empresa { get; set; } = null!;
 
     [Required(ErrorMessage = "Nome é obrigatório")]

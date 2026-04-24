@@ -8,7 +8,7 @@
             <option value="">Todas as empresas</option>
             @foreach(var e in Model.Empresas)
             {
-                <option value="@e.Id" selected="@(Model.EmpresaId == e.Id)">@e.Nome</option>
+                <option value="@e.Id" selected="@(Model.EmpresaId == e.Id ? "selected" : null)">@e.Nome</option>
             }
         </select>
     </form>

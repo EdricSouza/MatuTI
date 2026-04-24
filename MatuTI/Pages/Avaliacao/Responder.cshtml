@@ -120,9 +120,9 @@
                                     <div class="col-md-4">
                                         <label class="form-label small fw-semibold">Status</label>
                                         <select name="Inputs[@idx].PlanoStatus" class="form-select form-select-sm">
-                                            <option value="Pendente" selected="@(Model.Inputs[idx].PlanoStatus == "Pendente")">Pendente</option>
-                                            <option value="Em andamento" selected="@(Model.Inputs[idx].PlanoStatus == "Em andamento")">Em andamento</option>
-                                            <option value="Concluído" selected="@(Model.Inputs[idx].PlanoStatus == "Concluído")">Concluído</option>
+                                            <option value="Pendente" selected="@(Model.Inputs[idx].PlanoStatus == "Pendente" ? "selected" : null)">Pendente</option>
+                                            <option value="Em andamento" selected="@(Model.Inputs[idx].PlanoStatus == "Em andamento" ? "selected" : null)">Em andamento</option>
+                                            <option value="Concluído" selected="@(Model.Inputs[idx].PlanoStatus == "Concluído" ? "selected" : null)">Concluído</option>
                                         </select>
                                     </div>
                                     <div class="col-12">
@@ -144,7 +144,7 @@
             <button type="submit" class="btn btn-outline-secondary">
                 <i class="bi bi-save me-1"></i>Salvar rascunho
             </button>
-            <button type="submit" asp-route-concluir="true" class="btn btn-success btn-lg"
+            <button type="submit" name="concluir" value="true" class="btn btn-success btn-lg"
                     onclick="return confirm('Deseja concluir e gerar o relatório?')">
                 <i class="bi bi-flag-fill me-2"></i>Concluir e gerar relatório
             </button>
