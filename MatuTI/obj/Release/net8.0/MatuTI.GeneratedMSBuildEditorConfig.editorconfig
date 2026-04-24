@@ -1,0 +1,111 @@
+is_global = true
+build_property.TargetFramework = net8.0
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v8.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = MatuTI
+build_property.RootNamespace = MatuTI
+build_property.ProjectDir = C:\Users\edric.souza\Downloads\MatuTI_v3\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 8.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\edric.souza\Downloads\MatuTI_v3
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 8.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Admin/Usuarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWRtaW5cVXN1YXJpb3MuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Auth/AcessoNegado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxBY2Vzc29OZWdhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Auth/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Auth/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Auth/Registro.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXV0aFxSZWdpc3Ryby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Avaliacao/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZhbGlhY2FvXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Avaliacao/Iniciar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZhbGlhY2FvXEluaWNpYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Avaliacao/Relatorio.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZhbGlhY2FvXFJlbGF0b3Jpby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Avaliacao/Responder.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQXZhbGlhY2FvXFJlc3BvbmRlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Empresas/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wcmVzYXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Empresas/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wcmVzYXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Empresas/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRW1wcmVzYXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Inventario/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50YXJpb1xDcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Inventario/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50YXJpb1xFZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Inventario/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW52ZW50YXJpb1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Questoes/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVlc3RvZXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Questoes/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVlc3RvZXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Questoes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUXVlc3RvZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/edric.souza/Downloads/MatuTI_v3/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

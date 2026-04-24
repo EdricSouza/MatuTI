@@ -85,6 +85,57 @@ namespace MatuTI.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
+            modelBuilder.Entity("MatuTI.Models.AtivoTI", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("CriadoEm")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("Critico")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("DataAquisicao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("EmpresaId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Fabricante")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("FimSuporte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Localizacao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Nome")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Observacoes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Responsavel")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Versao")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("EmpresaId");
+
+                    b.ToTable("AtivosIT");
+                });
+
             modelBuilder.Entity("MatuTI.Models.Avaliacao", b =>
                 {
                     b.Property<int>("Id")
@@ -113,6 +164,32 @@ namespace MatuTI.Migrations
                     b.HasIndex("EmpresaId");
 
                     b.ToTable("Avaliacoes");
+                });
+
+            modelBuilder.Entity("MatuTI.Models.AvaliacaoLGPD", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AvaliacaoId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("Conforme")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Observacao")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Questao")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AvaliacaoId");
+
+                    b.ToTable("AvaliacoesLGPD");
                 });
 
             modelBuilder.Entity("MatuTI.Models.Empresa", b =>
@@ -158,12 +235,18 @@ namespace MatuTI.Migrations
                     b.Property<bool>("Ativo")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DominioCOBIT")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Indicador")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Peso")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("PraticaITIL")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Texto")
                         .IsRequired()
@@ -184,6 +267,19 @@ namespace MatuTI.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Evidencia")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("EvidenciaArquivo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("PlanoPrazo")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PlanoResponsavel")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("PlanoStatus")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Providencia")
@@ -332,6 +428,17 @@ namespace MatuTI.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("MatuTI.Models.AtivoTI", b =>
+                {
+                    b.HasOne("MatuTI.Models.Empresa", "Empresa")
+                        .WithMany()
+                        .HasForeignKey("EmpresaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Empresa");
+                });
+
             modelBuilder.Entity("MatuTI.Models.Avaliacao", b =>
                 {
                     b.HasOne("MatuTI.Models.Empresa", "Empresa")
@@ -341,6 +448,17 @@ namespace MatuTI.Migrations
                         .IsRequired();
 
                     b.Navigation("Empresa");
+                });
+
+            modelBuilder.Entity("MatuTI.Models.AvaliacaoLGPD", b =>
+                {
+                    b.HasOne("MatuTI.Models.Avaliacao", "Avaliacao")
+                        .WithMany()
+                        .HasForeignKey("AvaliacaoId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Avaliacao");
                 });
 
             modelBuilder.Entity("MatuTI.Models.Resposta", b =>

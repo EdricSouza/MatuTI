@@ -53,9 +53,40 @@ public class Resposta
     [Display(Name = "Resposta")]
     public bool Sim { get; set; }
 
-    [Display(Name = "Evidência")]
+    [Display(Name = "Evidência (texto)")]
     public string? Evidencia { get; set; }
 
-    [Display(Name = "Providência")]
+    // NC4 — upload de arquivo de evidência
+    [Display(Name = "Arquivo de evidência")]
+    public string? EvidenciaArquivo { get; set; }
+
+    // NC3 — plano de ação estruturado
+    [Display(Name = "Providência / Plano de ação")]
     public string? Providencia { get; set; }
+
+    [Display(Name = "Responsável")]
+    public string? PlanoResponsavel { get; set; }
+
+    [Display(Name = "Prazo")]
+    public DateTime? PlanoPrazo { get; set; }
+
+    [Display(Name = "Status")]
+    public string PlanoStatus { get; set; } = "Pendente";
+}
+
+// NC6 — Indicador LGPD
+public class AvaliacaoLGPD
+{
+    public int Id { get; set; }
+    public int AvaliacaoId { get; set; }
+    public Avaliacao Avaliacao { get; set; } = null!;
+
+    [Display(Name = "Questão")]
+    public string Questao { get; set; } = string.Empty;
+
+    [Display(Name = "Resposta")]
+    public bool Conforme { get; set; }
+
+    [Display(Name = "Observação")]
+    public string? Observacao { get; set; }
 }

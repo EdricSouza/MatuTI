@@ -1,11 +1,9 @@
 @page
 @model MatuTI.Pages.Questoes.CreateModel
-@{
-    ViewData["Title"] = "Nova Questão";
-}
+@{ViewData["Title"] = "Nova Questão";}
 
 <div class="row justify-content-center">
-    <div class="col-md-7">
+    <div class="col-md-8">
         <div class="card border-0 shadow-sm">
             <div class="card-body p-4">
                 <form method="post">
@@ -13,8 +11,7 @@
 
                     <div class="mb-3">
                         <label asp-for="Questao.Indicador" class="form-label fw-semibold"></label>
-                        <select asp-for="Questao.Indicador" asp-items="Model.IndicadoresList"
-                                class="form-select">
+                        <select asp-for="Questao.Indicador" asp-items="Model.IndicadoresList" class="form-select">
                             <option value="">-- Selecione um indicador --</option>
                         </select>
                         <span asp-validation-for="Questao.Indicador" class="text-danger small"></span>
@@ -22,27 +19,40 @@
 
                     <div class="mb-3">
                         <label asp-for="Questao.Texto" class="form-label fw-semibold"></label>
-                        <textarea asp-for="Questao.Texto" class="form-control" rows="3"
-                                  placeholder="Digite a pergunta..."></textarea>
+                        <textarea asp-for="Questao.Texto" class="form-control" rows="3" placeholder="Digite a pergunta..."></textarea>
                         <span asp-validation-for="Questao.Texto" class="text-danger small"></span>
                     </div>
 
-                    <div class="mb-3">
-                        <label asp-for="Questao.Peso" class="form-label fw-semibold">
-                            Peso <span class="text-muted fw-normal">(1 = baixo, 2 = médio, 3 = alto)</span>
-                        </label>
-                        <select asp-for="Questao.Peso" class="form-select">
-                            <option value="1">1 - Baixo</option>
-                            <option value="2">2 - Médio</option>
-                            <option value="3">3 - Alto</option>
-                        </select>
+                    <div class="row g-3 mb-3">
+                        <div class="col-md-4">
+                            <label asp-for="Questao.Peso" class="form-label fw-semibold">
+                                Peso <span class="text-muted fw-normal">(1=baixo … 5=crítico)</span>
+                            </label>
+                            <select asp-for="Questao.Peso" class="form-select">
+                                <option value="1">1 — Baixo</option>
+                                <option value="2">2 — Médio-baixo</option>
+                                <option value="3">3 — Médio</option>
+                                <option value="4">4 — Alto</option>
+                                <option value="5">5 — Crítico</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Questao.DominioCOBIT" class="form-label fw-semibold"></label>
+                            <select asp-for="Questao.DominioCOBIT" asp-items="Model.DominiosCOBITList" class="form-select">
+                                <option value="">-- Opcional --</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label asp-for="Questao.PraticaITIL" class="form-label fw-semibold"></label>
+                            <select asp-for="Questao.PraticaITIL" asp-items="Model.PraticasITILList" class="form-select">
+                                <option value="">-- Opcional --</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="d-flex gap-2 justify-content-end form-actions">
+                    <div class="d-flex gap-2 justify-content-end">
                         <a asp-page="Index" class="btn btn-outline-secondary">Cancelar</a>
-                        <button type="submit" class="btn btn-primary">
-                            <i class="bi bi-check-circle me-1"></i>Salvar
-                        </button>
+                        <button type="submit" class="btn btn-primary"><i class="bi bi-check-circle me-1"></i>Salvar</button>
                     </div>
                 </form>
             </div>

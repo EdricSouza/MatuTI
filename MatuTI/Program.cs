@@ -5,23 +5,9 @@ using MatuTI.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
-//
-// ================= DATABASE =================
-//
-var databasePath = Environment.GetEnvironmentVariable("DB_PATH") ?? "matuti.db";
-var databaseDirectory = Path.GetDirectoryName(databasePath);
-
-if (!string.IsNullOrWhiteSpace(databaseDirectory))
-{
-    Directory.CreateDirectory(databaseDirectory);
-}
-
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseSqlite($"Data Source={databasePath}"));
+    options.UseSqlite("Data Source=matuti.db"));
 
-//
-// ================= IDENTITY =================
-//
 builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
 {
     options.Password.RequireDigit = true;
@@ -39,68 +25,42 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.AccessDeniedPath = "/Auth/AcessoNegado";
 });
 
-//
-// ================= AUTHORIZATION =================
-//
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("Admin",
-        policy => policy.RequireRole("Admin"));
-});
-
-//
-// ================= RAZOR PAGES =================
-//
 builder.Services.AddRazorPages(options =>
 {
     options.Conventions.AuthorizeFolder("/Empresas", "Admin");
     options.Conventions.AuthorizeFolder("/Questoes", "Admin");
+    options.Conventions.AuthorizeFolder("/Admin", "Admin");
     options.Conventions.AuthorizeFolder("/Avaliacao");
+    options.Conventions.AuthorizeFolder("/Inventario");
     options.Conventions.AuthorizePage("/Index");
 });
 
-//
-// ================= PORTA (RENDER / DOCKER) =================
-//
-var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
-builder.WebHost.UseUrls($"http://*:{port}");
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("Admin", policy => policy.RequireRole("Admin"));
+});
 
 var app = builder.Build();
 
-//
-// ================= PIPELINE =================
-//
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Error");
     app.UseHsts();
 }
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseHttpsRedirection();
-}
-
+app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
-
 app.UseAuthentication();
 app.UseAuthorization();
-
 app.MapRazorPages();
 
-//
-// ================= MIGRATION + SEED =================
-//
+// Seed inicial
 using (var scope = app.Services.CreateScope())
 {
-    var services = scope.ServiceProvider;
-
-    var db = services.GetRequiredService<AppDbContext>();
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
     db.Database.Migrate();
-
-    await Seed.InicializarAsync(services);
+    await Seed.InicializarAsync(scope.ServiceProvider);
 }
 
 app.Run();

@@ -12,6 +12,8 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     public DbSet<Questao> Questoes { get; set; }
     public DbSet<Avaliacao> Avaliacoes { get; set; }
     public DbSet<Resposta> Respostas { get; set; }
+    public DbSet<AtivoTI> AtivosIT { get; set; }         // NC5 — Inventário
+    public DbSet<AvaliacaoLGPD> AvaliacoesLGPD { get; set; } // NC6 — LGPD
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
@@ -28,5 +30,17 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
             .WithMany(q => q.Respostas)
             .HasForeignKey(r => r.QuestaoId)
             .OnDelete(DeleteBehavior.Restrict);
+
+        builder.Entity<AtivoTI>()
+            .HasOne(a => a.Empresa)
+            .WithMany()
+            .HasForeignKey(a => a.EmpresaId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        builder.Entity<AvaliacaoLGPD>()
+            .HasOne(a => a.Avaliacao)
+            .WithMany()
+            .HasForeignKey(a => a.AvaliacaoId)
+            .OnDelete(DeleteBehavior.Cascade);
     }
 }

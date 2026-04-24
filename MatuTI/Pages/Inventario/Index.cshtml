@@ -1,0 +1,66 @@
+@page
+@model MatuTI.Pages.Inventario.IndexModel
+@{ViewData["Title"] = "Inventário de Ativos de TI";}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <form method="get" class="d-flex gap-2 align-items-center">
+        <select name="EmpresaId" class="form-select form-select-sm" onchange="this.form.submit()" style="width:250px">
+            <option value="">Todas as empresas</option>
+            @foreach(var e in Model.Empresas)
+            {
+                <option value="@e.Id" selected="@(Model.EmpresaId == e.Id)">@e.Nome</option>
+            }
+        </select>
+    </form>
+    <a asp-page="Create" class="btn btn-primary"><i class="bi bi-plus-circle me-1"></i>Novo Ativo</a>
+</div>
+
+@if (TempData["Sucesso"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show">
+        <i class="bi bi-check-circle me-2"></i>@TempData["Sucesso"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+}
+
+<div class="card border-0 shadow-sm">
+    <div class="card-body p-0">
+        @if (!Model.Ativos.Any())
+        {
+            <div class="text-center text-muted py-5"><i class="bi bi-pc-display fs-1 d-block mb-2"></i>Nenhum ativo cadastrado.</div>
+        }
+        else
+        {
+            <table class="table table-hover mb-0">
+                <thead class="table-light">
+                    <tr><th>Empresa</th><th>Nome</th><th>Tipo</th><th>Fabricante</th><th>Ambiente</th><th>Responsável</th><th>Crítico</th><th>Fim Suporte</th><th>Ações</th></tr>
+                </thead>
+                <tbody>
+                    @foreach(var a in Model.Ativos)
+                    {
+                        var vencido = a.FimSuporte.HasValue && a.FimSuporte.Value < DateTime.Today;
+                        <tr class="@(vencido ? "table-danger" : "")">
+                            <td class="small">@a.Empresa.Nome</td>
+                            <td class="fw-semibold">@a.Nome</td>
+                            <td><span class="badge bg-secondary">@a.Tipo</span></td>
+                            <td class="small">@(a.Fabricante ?? "—")</td>
+                            <td class="small">@(a.Localizacao ?? "—")</td>
+                            <td class="small">@(a.Responsavel ?? "—")</td>
+                            <td>@(a.Critico ? "⚠️ Sim" : "Não")</td>
+                            <td class="small @(vencido ? "fw-bold text-danger" : "")">
+                                @(a.FimSuporte?.ToString("dd/MM/yyyy") ?? "—")
+                                @(vencido ? " (VENCIDO)" : "")
+                            </td>
+                            <td>
+                                <a asp-page="Edit" asp-route-id="@a.Id" class="btn btn-sm btn-outline-secondary me-1"><i class="bi bi-pencil"></i></a>
+                                <form method="post" asp-page-handler="Excluir" asp-route-id="@a.Id" class="d-inline" onsubmit="return confirm('Excluir ativo?')">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i></button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+    </div>
+</div>

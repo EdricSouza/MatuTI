@@ -26,7 +26,7 @@
     </div>
 }
 
-<form method="post" asp-page-handler="Salvar" asp-route-id="@Model.Avaliacao.Id">
+<form method="post" asp-page-handler="Salvar" asp-route-id="@Model.Avaliacao.Id" enctype="multipart/form-data">
     @for (int i = 0; i < Model.Inputs.Count; i++)
     {
         <input type="hidden" asp-for="Inputs[i].RespostaId" />
@@ -36,70 +36,100 @@
     {
         <div class="card border-0 shadow-sm mb-4">
             <div class="card-header bg-primary text-white py-3">
-                <h6 class="mb-0 fw-semibold">
-                    <i class="bi bi-tag me-2"></i>@grupo.Key
-                </h6>
+                <h6 class="mb-0 fw-semibold"><i class="bi bi-tag me-2"></i>@grupo.Key</h6>
             </div>
             <div class="card-body p-0">
                 @foreach (var resposta in grupo)
                 {
                     var idx = Model.Inputs.FindIndex(x => x.RespostaId == resposta.Id);
-                    <div class="border-bottom p-4 questao-item" id="questao-@resposta.Id">
-                        <div class="d-flex justify-content-between align-items-start gap-3">
-                            <div class="flex-grow-1">
-                                <p class="mb-2 fw-semibold">
-                                    @resposta.Questao.Texto
-                                    @for (int p = 0; p < resposta.Questao.Peso; p++)
+                    <div class="border-bottom p-4" id="questao-@resposta.Id">
+                        <p class="mb-2 fw-semibold">
+                            @resposta.Questao.Texto
+                            @for (int p = 0; p < resposta.Questao.Peso; p++) { <i class="bi bi-star-fill text-warning ms-1" style="font-size:0.7rem"></i> }
+                        </p>
+                        @if (!string.IsNullOrEmpty(resposta.Questao.DominioCOBIT))
+                        {
+                            <div class="mb-2">
+                                <span class="badge bg-dark-subtle text-dark me-1"><i class="bi bi-diagram-3 me-1"></i>@resposta.Questao.DominioCOBIT</span>
+                                @if (!string.IsNullOrEmpty(resposta.Questao.PraticaITIL))
+                                {
+                                    <span class="badge bg-secondary-subtle text-secondary"><i class="bi bi-gear me-1"></i>@resposta.Questao.PraticaITIL</span>
+                                }
+                            </div>
+                        }
+
+                        <div class="d-flex gap-3 mb-3">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input resposta-radio" type="radio"
+                                       name="Inputs[@idx].Sim" id="sim-@resposta.Id" value="true"
+                                       data-id="@resposta.Id" @(Model.Inputs[idx].Sim ? "checked" : "") />
+                                <label class="form-check-label text-success fw-semibold" for="sim-@resposta.Id">
+                                    <i class="bi bi-check-circle me-1"></i>SIM
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input resposta-radio" type="radio"
+                                       name="Inputs[@idx].Sim" id="nao-@resposta.Id" value="false"
+                                       data-id="@resposta.Id" @(!Model.Inputs[idx].Sim ? "checked" : "") />
+                                <label class="form-check-label text-danger fw-semibold" for="nao-@resposta.Id">
+                                    <i class="bi bi-x-circle me-1"></i>NÃO
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- SIM: evidência texto + upload (NC4) -->
+                        <div class="evidencia-box-@resposta.Id" style="display:@(Model.Inputs[idx].Sim ? "block" : "none")">
+                            <div class="row g-2">
+                                <div class="col-md-7">
+                                    <label class="form-label small fw-semibold text-success"><i class="bi bi-check2-square me-1"></i>Evidência (texto)</label>
+                                    <textarea name="Inputs[@idx].Evidencia" class="form-control form-control-sm" rows="2"
+                                              placeholder="Descreva a evidência...">@Model.Inputs[idx].Evidencia</textarea>
+                                </div>
+                                <div class="col-md-5">
+                                    <label class="form-label small fw-semibold text-success"><i class="bi bi-paperclip me-1"></i>Anexar arquivo de evidência</label>
+                                    <input type="file" name="Inputs[@idx].EvidenciaArquivo" class="form-control form-control-sm"
+                                           accept=".pdf,.png,.jpg,.jpeg,.docx,.xlsx" />
+                                    @if (!string.IsNullOrEmpty(resposta.EvidenciaArquivo))
                                     {
-                                        <i class="bi bi-star-fill text-warning ms-1" style="font-size:0.7rem"></i>
+                                        <div class="small text-muted mt-1"><i class="bi bi-file-earmark me-1"></i>@resposta.EvidenciaArquivo</div>
                                     }
-                                </p>
-
-                                <div class="d-flex gap-3 mb-3 resposta-opcoes">
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input resposta-radio"
-                                               type="radio"
-                                               name="Inputs[@idx].Sim"
-                                               id="sim-@resposta.Id"
-                                               value="true"
-                                               data-id="@resposta.Id"
-                                               @(Model.Inputs[idx].Sim ? "checked" : "") />
-                                        <label class="form-check-label text-success fw-semibold" for="sim-@resposta.Id">
-                                            <i class="bi bi-check-circle me-1"></i>SIM
-                                        </label>
-                                    </div>
-                                    <div class="form-check form-check-inline">
-                                        <input class="form-check-input resposta-radio"
-                                               type="radio"
-                                               name="Inputs[@idx].Sim"
-                                               id="nao-@resposta.Id"
-                                               value="false"
-                                               data-id="@resposta.Id"
-                                               @(!Model.Inputs[idx].Sim ? "checked" : "") />
-                                        <label class="form-check-label text-danger fw-semibold" for="nao-@resposta.Id">
-                                            <i class="bi bi-x-circle me-1"></i>NÃO
-                                        </label>
-                                    </div>
                                 </div>
+                            </div>
+                        </div>
 
-                                <div class="evidencia-box-@resposta.Id" style="display:@(Model.Inputs[idx].Sim ? "block" : "none")">
-                                    <label class="form-label small fw-semibold text-success">
-                                        <i class="bi bi-check2-square me-1"></i>Evidência (obrigatória para SIM)
-                                    </label>
-                                    <textarea name="Inputs[@idx].Evidencia"
-                                              class="form-control form-control-sm"
-                                              rows="2"
-                                              placeholder="Descreva a evidência que comprova esta resposta...">@Model.Inputs[idx].Evidencia</textarea>
-                                </div>
-
-                                <div class="providencia-box-@resposta.Id" style="display:@(!Model.Inputs[idx].Sim ? "block" : "none")">
-                                    <label class="form-label small fw-semibold text-danger">
-                                        <i class="bi bi-exclamation-triangle me-1"></i>Providência / Plano de ação (obrigatória para NÃO)
-                                    </label>
-                                    <textarea name="Inputs[@idx].Providencia"
-                                              class="form-control form-control-sm"
-                                              rows="2"
-                                              placeholder="Descreva o plano de ação para corrigir esta lacuna...">@Model.Inputs[idx].Providencia</textarea>
+                        <!-- NÃO: plano de ação estruturado (NC3) -->
+                        <div class="providencia-box-@resposta.Id" style="display:@(!Model.Inputs[idx].Sim ? "block" : "none")">
+                            <div class="p-3 bg-danger-subtle rounded">
+                                <div class="fw-semibold small text-danger mb-2"><i class="bi bi-exclamation-triangle me-1"></i>Plano de Ação</div>
+                                <div class="row g-2">
+                                    <div class="col-12">
+                                        <label class="form-label small fw-semibold">Providência / Descrição da ação</label>
+                                        <textarea name="Inputs[@idx].Providencia" class="form-control form-control-sm" rows="2"
+                                                  placeholder="Descreva o plano de ação...">@Model.Inputs[idx].Providencia</textarea>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label small fw-semibold">Responsável</label>
+                                        <input type="text" name="Inputs[@idx].PlanoResponsavel" class="form-control form-control-sm"
+                                               value="@Model.Inputs[idx].PlanoResponsavel" placeholder="Nome do responsável" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label small fw-semibold">Prazo</label>
+                                        <input type="date" name="Inputs[@idx].PlanoPrazo" class="form-control form-control-sm"
+                                               value="@(Model.Inputs[idx].PlanoPrazo?.ToString("yyyy-MM-dd"))" />
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label small fw-semibold">Status</label>
+                                        <select name="Inputs[@idx].PlanoStatus" class="form-select form-select-sm">
+                                            <option value="Pendente" selected="@(Model.Inputs[idx].PlanoStatus == "Pendente")">Pendente</option>
+                                            <option value="Em andamento" selected="@(Model.Inputs[idx].PlanoStatus == "Em andamento")">Em andamento</option>
+                                            <option value="Concluído" selected="@(Model.Inputs[idx].PlanoStatus == "Concluído")">Concluído</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <div class="alert alert-info py-1 px-2 mb-0 small">
+                                            <i class="bi bi-lightbulb me-1"></i><strong>Sugestão:</strong> @MatuTI.Services.ScoreCalculator.SugestaoGAP(resposta.Questao.Indicador)
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -110,12 +140,12 @@
     }
 
     <div class="card border-0 shadow-sm">
-        <div class="card-body d-flex justify-content-between align-items-center py-3 form-actions">
+        <div class="card-body d-flex justify-content-between align-items-center py-3">
             <button type="submit" class="btn btn-outline-secondary">
                 <i class="bi bi-save me-1"></i>Salvar rascunho
             </button>
-            <button type="submit" asp-page-handler="Salvar" asp-route-concluir="true" class="btn btn-success btn-lg"
-                    onclick="return confirm('Deseja concluir e gerar o relatório? Não será possível editar após a conclusão.')">
+            <button type="submit" asp-route-concluir="true" class="btn btn-success btn-lg"
+                    onclick="return confirm('Deseja concluir e gerar o relatório?')">
                 <i class="bi bi-flag-fill me-2"></i>Concluir e gerar relatório
             </button>
         </div>

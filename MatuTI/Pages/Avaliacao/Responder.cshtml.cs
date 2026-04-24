@@ -11,7 +11,13 @@ namespace MatuTI.Pages.Avaliacao;
 public class ResponderModel : PageModel
 {
     private readonly AppDbContext _db;
-    public ResponderModel(AppDbContext db) => _db = db;
+    private readonly IWebHostEnvironment _env;
+
+    public ResponderModel(AppDbContext db, IWebHostEnvironment env)
+    {
+        _db = db;
+        _env = env;
+    }
 
     public Models.Avaliacao Avaliacao { get; set; } = null!;
     public List<IGrouping<string, Resposta>> RespostasPorIndicador { get; set; } = new();
@@ -24,7 +30,11 @@ public class ResponderModel : PageModel
         public int RespostaId { get; set; }
         public bool Sim { get; set; }
         public string? Evidencia { get; set; }
+        public IFormFile? EvidenciaArquivo { get; set; }
         public string? Providencia { get; set; }
+        public string? PlanoResponsavel { get; set; }
+        public DateTime? PlanoPrazo { get; set; }
+        public string PlanoStatus { get; set; } = "Pendente";
     }
 
     public async Task<IActionResult> OnGetAsync(int id)
@@ -51,7 +61,10 @@ public class ResponderModel : PageModel
             RespostaId = r.Id,
             Sim = r.Sim,
             Evidencia = r.Evidencia,
-            Providencia = r.Providencia
+            Providencia = r.Providencia,
+            PlanoResponsavel = r.PlanoResponsavel,
+            PlanoPrazo = r.PlanoPrazo,
+            PlanoStatus = r.PlanoStatus
         }).ToList();
 
         return Page();
@@ -65,6 +78,9 @@ public class ResponderModel : PageModel
 
         if (avaliacao == null) return NotFound();
 
+        var uploadsDir = Path.Combine(_env.WebRootPath, "uploads");
+        Directory.CreateDirectory(uploadsDir);
+
         foreach (var input in Inputs)
         {
             var resposta = avaliacao.Respostas.FirstOrDefault(r => r.Id == input.RespostaId);
@@ -73,6 +89,20 @@ public class ResponderModel : PageModel
             resposta.Sim = input.Sim;
             resposta.Evidencia = input.Sim ? input.Evidencia : null;
             resposta.Providencia = !input.Sim ? input.Providencia : null;
+            resposta.PlanoResponsavel = !input.Sim ? input.PlanoResponsavel : null;
+            resposta.PlanoPrazo = !input.Sim ? input.PlanoPrazo : null;
+            resposta.PlanoStatus = !input.Sim ? input.PlanoStatus : "Pendente";
+
+            // NC4 — Upload de arquivo de evidência
+            if (input.Sim && input.EvidenciaArquivo != null && input.EvidenciaArquivo.Length > 0)
+            {
+                var ext = Path.GetExtension(input.EvidenciaArquivo.FileName);
+                var fileName = $"ev_{resposta.Id}_{DateTime.Now.Ticks}{ext}";
+                var filePath = Path.Combine(uploadsDir, fileName);
+                using var stream = new FileStream(filePath, FileMode.Create);
+                await input.EvidenciaArquivo.CopyToAsync(stream);
+                resposta.EvidenciaArquivo = fileName;
+            }
         }
 
         if (concluir)
